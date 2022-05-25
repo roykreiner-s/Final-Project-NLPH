@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import time
 from bs4 import BeautifulSoup
 from sklearn.feature_extraction.text import CountVectorizer
-from collections import  Counter
+from collections import Counter
 import seaborn as sns
 import numpy as np
 import re
@@ -18,10 +18,12 @@ from itertools import islice
 
 
 
-"""
- Scraping method for thinkil texts
-"""
+
 def scrape_thinkil():
+    """
+    Scraping method for thinkil texts
+    :return: dic of {url,author,title,text} of pages in thinkil
+    """
     url = "https://thinkil.co.il/texts-sitemap.xml"
     url_response = requests.get(url)
     soup = BeautifulSoup(url_response.text, 'html.parser')
