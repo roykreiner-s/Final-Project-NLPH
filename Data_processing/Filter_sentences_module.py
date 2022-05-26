@@ -11,7 +11,6 @@ from yap_api import YapApi
 
 
 
-
 def split_by_dot(text):
     return text.split('.')
 
@@ -55,9 +54,5 @@ def filter_sentences_with_numbers(texts):
             #     ret_sentences.append(sentence_text)
 
     return pd.DataFrame(ret_sentences)
-
-
-
-
 
 

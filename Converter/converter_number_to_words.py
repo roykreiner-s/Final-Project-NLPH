@@ -222,7 +222,6 @@ class Num2Word_HE(Num2Word_Base):
     def to_ordinal(self, number):
         raise NotImplementedError()
 
-
 if __name__ == '__main__':
     yo = Num2Word_HE()
-    print(yo.to_cardinal(1111113123))
+    print(yo.to_cardinal(1016.01))
