@@ -103,12 +103,12 @@ def convert_3_digits(words):
         ret += 11
         return ret
 
+    elif words.find(u'עשרים') != -1:
+        ret += 20
+
     elif words.find(u' עשר') != -1 or words.find(u'עשרה') != -1:
         ret += 10
         return ret
-
-    elif words.find(u'עשרים') != -1:
-        ret += 20
 
     elif words.find(u'שלושים') != -1:
         ret += 30
@@ -132,31 +132,31 @@ def convert_3_digits(words):
         ret += 90
 
     # ones
-    if words.find(u'אחת') != -1 or words.find(u'אחד') != -1:
+    if filtered_word[-1] == (u'אחת') or filtered_word[-1] == (u'אחד'):
         ret += 1
 
-    elif words.find(u'שתיים') != -1  or words.find(u'שניים') != -1:
+    elif filtered_word[-1] == (u'שתיים') or filtered_word[-1] == (u'שניים'):
         ret += 2
 
-    elif words.find(u'שלושה') != -1 or words.find(u'שלוש') != -1:
+    elif filtered_word[-1] == (u'שלושה') or filtered_word[-1] == (u'שלוש'):
         ret += 3
 
-    elif words.find(u'ארבעה') != -1 or words.find(u'ארבע') != -1:
+    elif filtered_word[-1] == (u'ארבעה') or filtered_word[-1] == (u'ארבע'):
         ret += 4
 
-    elif words.find(u'חמישה') != -1 or words.find(u'חמש') != -1:
+    elif filtered_word[-1] == (u'חמישה') or filtered_word[-1] == (u'חמש'):
         ret += 5
 
-    elif words.find(u'שישה') != -1 or words.find(u'שש') != -1:
+    elif filtered_word[-1] == (u'שישה') or filtered_word[-1] == (u'שש'):
         ret +=6
 
-    elif words.find(u'שבעה') != -1 or words.find(u'שבע') != -1:
+    elif filtered_word[-1] == (u'שבעה') or filtered_word[-1] == (u'שבע'):
         ret += 7
     
-    elif words.find(u'שמונה') != -1:
+    elif filtered_word[-1] == (u'שמונה') :
         ret += 8
 
-    elif words.find(u'תשעה') != -1 or words.find(u'תשע') != -1:
+    elif filtered_word[-1] == (u'תשעה') or filtered_word[-1] == (u'תשע'):
         ret += 9
 
 
@@ -253,7 +253,7 @@ class Word2Num_HE():
 
 if __name__ == '__main__':
     yo = Word2Num_HE()
-    print(yo.to_cardinal(u' שלוש מאות ועשרים מיליון שלוש אלף שלוש מאות ואחד'))
+    print(yo.to_cardinal(u' שלוש מאות ועשרים ואחד מיליון שלושים וארבע אלף שלוש מאות ואחד'))
 
 
 
