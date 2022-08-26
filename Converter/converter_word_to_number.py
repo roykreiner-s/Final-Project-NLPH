@@ -2,7 +2,6 @@
 from __future__ import print_function, unicode_literals
 from tkinter import E
 
-from base import Num2Word_Base
 from utils import get_digits, splitbyx
 
 import re
@@ -32,7 +31,6 @@ def convert_3_digits(words):
 
     # join the filtered word to list
     words = ' '.join(filtered_word)
-
 
     # convert words to number
     ret = 0
@@ -83,7 +81,7 @@ def convert_3_digits(words):
     elif words.find(u'ששה עשר') != -1 or words.find(u'שש עשרה') != -1:
         ret += 16
 
-    elif words.find(u'חמישה עשר') != -1 or words.find(u'חמיש עשרה') != -1:
+    elif words.find(u'חמישה עשר') != -1 or words.find(u'חמש עשרה') != -1:
         ret += 15
         return ret
     
@@ -132,6 +130,8 @@ def convert_3_digits(words):
         ret += 90
 
     # ones
+    if len(filtered_word) > 1:
+        filtered_word = filtered_word[:-1]
     if filtered_word[-1] == (u'אחת') or filtered_word[-1] == (u'אחד'):
         ret += 1
 

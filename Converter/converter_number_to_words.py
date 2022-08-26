@@ -1,8 +1,8 @@
 
 from __future__ import print_function, unicode_literals
 
-from base import Num2Word_Base
-from utils import get_digits, splitbyx
+from Converter.utils import get_digits, splitbyx
+
 
 THRILIARD_NUMBER = 999999999999999999999
 
@@ -128,7 +128,7 @@ def convert_3_digits(x, words, i, sex):
         if n3 <= 2:
             words.append(HUNDRED[n3][0])
         else:
-            if sex == "female":
+            if sex != 'M':
                 words.append(ONES_FEMALE[n3][0] + ' ' + HUNDRED[3][0])
             else:
                 words.append(ONES_MALE[n3][0] + ' ' + HUNDRED[3][0])
@@ -137,12 +137,12 @@ def convert_3_digits(x, words, i, sex):
         words.append(TWENTIES[n2][0])
 
     if n2 == 1:
-        if sex == "female":
+        if sex == 'F':
             words.append(TENS_FEMALE[n1][0])
         else:
             words.append(TENS_MALE[n1][0])
     elif n1 > 0 and not (i > 0 and x == 1):
-        if sex == "female":
+        if sex == 'F':
             words.append(ONES_FEMALE[n1][0])
         else:
             words.append(ONES_MALE[n1][0])
@@ -151,7 +151,7 @@ def convert_3_digits(x, words, i, sex):
         words[-1] = AND + words[-1]
 
 
-def int2word(n):
+def int2word(n, gender):
     """
     converter - number to word (until THRILIARD)
     :param n: number to convert
@@ -173,7 +173,7 @@ def int2word(n):
         i -= 1
 
         if i == 0:
-            convert_3_digits(x, words, i, "female")
+            convert_3_digits(x, words, i, gender)
 
         else:
             if i == 1: # special case of thousands unit such as 1,2,3,4,5,6,7,8,9.
@@ -182,7 +182,7 @@ def int2word(n):
                     words.append(THOUSANDS[n1][0])
                     continue
 
-            convert_3_digits(x, words, i, "male")
+            convert_3_digits(x, words, i, gender)
             if i == 7:
                 words.append(THRILIARD)
 
@@ -207,21 +207,22 @@ def int2word(n):
     return ' '.join(words)
 
 
-def n2w(n):
-    return int2word(int(n))
+def n2w(n, gender):
+    return int2word(int(n), gender)
 
 
 def to_currency(n, currency='EUR', cents=True, separator=','):
     raise NotImplementedError()
 
 
-class Num2Word_HE(Num2Word_Base):
-    def to_cardinal(self, number):
-        return n2w(number)
+class Num2Word_HE():
+    def to_cardinal(self, number, gender):
+        return n2w(number, gender)
 
     def to_ordinal(self, number):
         raise NotImplementedError()
 
 if __name__ == '__main__':
     yo = Num2Word_HE()
-    print(yo.to_cardinal(1016.01))
+    gender = 'M'
+    print(yo.to_cardinal(1016.01, gender))
