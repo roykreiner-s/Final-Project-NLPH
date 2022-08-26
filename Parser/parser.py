@@ -37,6 +37,17 @@ def check_if_line_contains_alphabetic_number(line):
                for word in line.split())
 
 
+# def gen_yap_api(text):
+#         text= text.replace(r'"', r'\"')
+#         url = f'https://www.langndata.com/api/heb_parser?token={yap_token}'
+#         _json='{"data":"'+text.strip()+'"}'
+#         headers = {'content-type': 'application/json'}
+#         sleep(0.1)
+#         r = requests.post(url,  data=_json.encode('utf-8'), headers={'Content-type': 'application/json; charset=utf-8'})
+#         json_obj=r.json()
+#         return json_obj.get('segmented_text')
+
+
 def build_line_with_number_with_correct_gender(line):
     # todo [noamkesten] build new line
     return line
