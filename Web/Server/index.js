@@ -11,13 +11,13 @@ app.get("/text", async (req, res) => {
   // todo call python method
 
   const { spawn } = require("child_process");
-  const pythonProcess = spawn("python", ["main.py", req.query.text]);
-  let x = await setTimeout(() => {}, 1);
+  const pythonProcess = spawn("python", ["../../Converter/main.py", req.query.text]);
+  let x = await setTimeout(() => {}, 1000);
   pythonProcess.stdout.on("data", function (data) {
     console.log(data.toString());
     // timeout of 3 seconds
-    res.send(data);
-    // res.end("end");
+    res.write(data);
+    res.end("end");
   });
 
   //   const PythonShell = require("python-shell").PythonShell;

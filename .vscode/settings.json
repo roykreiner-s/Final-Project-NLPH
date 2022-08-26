@@ -1,0 +1,8 @@
+{
+    "python.analysis.extraPaths": [
+        "./Converter"
+    ],
+    "cSpell.words": [
+        "yapsdk"
+    ]
+}

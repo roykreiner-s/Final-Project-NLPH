@@ -32,7 +32,7 @@ function HebrewTextForm(props) {
       <Input
         id="my-input"
         {...register("text")}
-        defaultValue="יש 5 מכוניות"
+        defaultValue="יש חמישה מכוניות"
         aria-describedby="my-helper-text"
         rows={8}
         minRows={4}

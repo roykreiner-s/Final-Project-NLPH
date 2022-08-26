@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from __future__ import print_function, unicode_literals
 from tkinter import E
@@ -7,9 +9,9 @@ from utils import get_digits, splitbyx
 import re
 
 
-SIZES = {u'מיליון':1000000 , u'מיליארד':1000000000, u'ביליון':1000000000000,
-         u'בילארד':1000000000000000, u'טריליון':1000000000000000000,
-         u'טריליארד':1000000000000000000000, u'אלף':1000}
+SIZES = {u'מיליון': 1000000, u'מיליארד': 1000000000, u'ביליון': 1000000000000,
+         u'בילארד': 1000000000000000, u'טריליון': 1000000000000000000,
+         u'טריליארד': 1000000000000000000000, u'אלף': 1000}
 
 
 def convert_3_digits(words):
@@ -19,7 +21,7 @@ def convert_3_digits(words):
     :param words: words of number list
     :param i: index of current chunk
     """
-    
+
     # remove all start chars for word in words string starting with u'ו'
     filtered_word = []
     for word in words:
@@ -27,7 +29,6 @@ def convert_3_digits(words):
             filtered_word.append(word[1:])
         else:
             filtered_word.append(word)
-
 
     # join the filtered word to list
     words = ' '.join(filtered_word)
@@ -40,7 +41,7 @@ def convert_3_digits(words):
     if words.find(u'מאה') != -1:
         ret += 100
 
-    elif words.find(u'מאתיים') != -1 :
+    elif words.find(u'מאתיים') != -1:
         ret += 200
 
     elif words.find(u'שלוש מאות') != -1 or words.find(u'שלושה מאות') != -1:
@@ -84,11 +85,11 @@ def convert_3_digits(words):
     elif words.find(u'חמישה עשר') != -1 or words.find(u'חמש עשרה') != -1:
         ret += 15
         return ret
-    
+
     elif words.find(u'ארבעה עשר') != -1 or words.find(u'ארבע עשרה') != -1:
         ret += 14
         return ret
-    
+
     elif words.find(u'שלושה עשר') != -1 or words.find(u'שלוש עשרה') != -1:
         ret += 13
         return ret
@@ -148,19 +149,19 @@ def convert_3_digits(words):
         ret += 5
 
     elif filtered_word[-1] == (u'שישה') or filtered_word[-1] == (u'שש'):
-        ret +=6
+        ret += 6
 
     elif filtered_word[-1] == (u'שבעה') or filtered_word[-1] == (u'שבע'):
         ret += 7
-    
-    elif filtered_word[-1] == (u'שמונה') :
+
+    elif filtered_word[-1] == (u'שמונה'):
         ret += 8
 
     elif filtered_word[-1] == (u'תשעה') or filtered_word[-1] == (u'תשע'):
         ret += 9
 
-
     return ret
+
 
 def manage_thousends(word):
 
@@ -187,7 +188,7 @@ def manage_thousends(word):
 
     if word[0] == u'שלושת':
         return 3000
-        
+
 
 def word2int(words):
     """
@@ -197,7 +198,7 @@ def word2int(words):
     """
     ret = 0
 
-     # remove all start chars for word in words string starting with u'ו'
+    # remove all start chars for word in words string starting with u'ו'
     filtered_word = []
     for word in words.split(' '):
         if word.startswith(u'ו'):
@@ -205,15 +206,13 @@ def word2int(words):
         else:
             filtered_word.append(word)
 
-
     # join the filtered word to list
     words = ' '.join(filtered_word)
 
-    
     # split word to words
     words = words.split(' ')
 
-    # run on all words and when find word in SIZES save all words before it and send them to convert_3_digits   
+    # run on all words and when find word in SIZES save all words before it and send them to convert_3_digits
     temp_words = []
     for word in words:
         if word not in SIZES and word != u'אלפים' and word != u'אלפיים':
@@ -236,6 +235,7 @@ def word2int(words):
 
     return ret
 
+
 def w2n(word):
     return word2int(word)
 
@@ -251,13 +251,11 @@ class Word2Num_HE():
     def to_ordinal(self, number):
         raise NotImplementedError()
 
+
 if __name__ == '__main__':
     yo = Word2Num_HE()
-    print(yo.to_cardinal(u' שלוש מאות ועשרים ואחד מיליון שלושים וארבע אלף שלוש מאות ואחד'))
-
-
-
-
+    print(yo.to_cardinal(
+        u' שלוש מאות ועשרים ואחד מיליון שלושים וארבע אלף שלוש מאות ואחד'))
 
 
 # ------------------- DICS ------------------------------

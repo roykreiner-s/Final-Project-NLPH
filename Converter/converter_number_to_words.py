@@ -1,7 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 
 from __future__ import print_function, unicode_literals
 
-from Converter.utils import get_digits, splitbyx
+from utils import get_digits, splitbyx
 
 
 THRILIARD_NUMBER = 999999999999999999999
@@ -176,7 +179,7 @@ def int2word(n, gender):
             convert_3_digits(x, words, i, gender)
 
         else:
-            if i == 1: # special case of thousands unit such as 1,2,3,4,5,6,7,8,9.
+            if i == 1:  # special case of thousands unit such as 1,2,3,4,5,6,7,8,9.
                 n1, n2, n3 = get_digits(x)
                 if n2 == 0 and n3 == 0:
                     words.append(THOUSANDS[n1][0])
@@ -221,6 +224,7 @@ class Num2Word_HE():
 
     def to_ordinal(self, number):
         raise NotImplementedError()
+
 
 if __name__ == '__main__':
     yo = Num2Word_HE()
