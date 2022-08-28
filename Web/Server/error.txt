@@ -1,12 +1,6 @@
 Traceback (most recent call last):
-  File "../../Converter/main.py", line 155, in <module>
+  File "../../Converter/main.py", line 166, in <module>
     main()
-  File "../../Converter/main.py", line 144, in main
-    print(run_text(sys.argv[1]))
-  File "../../Converter/main.py", line 139, in run_text
-    line = build_line_with_number_with_correct_gender(text)
-  File "../../Converter/main.py", line 52, in build_line_with_number_with_correct_gender
-    r = get_json_from_yap(line)
-  File "../../Converter/main.py", line 131, in get_json_from_yap
-    r = requests.post(url, data=_json.encode('utf-8'), headers=headers)
-UnicodeDecodeError: 'ascii' codec can't decode byte 0xd7 in position 9: ordinal not in range(128)
+  File "../../Converter/main.py", line 150, in main
+    dep_tree = sys.argv[1].encode("utf-8")
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xd7 in position 24: ordinal not in range(128)

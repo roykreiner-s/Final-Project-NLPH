@@ -1,43 +1,27 @@
 const express = require("express");
 const app = express();
+const utf8 = require("utf8");
+const axios = require("axios");
 const cors = require("cors");
-
-const PYTHON_PATH = "/Users/noamkesten/PycharmProjects/Final-Project-NLPH/Parser/parser.py";
 
 app.use(cors({ origin: "*" }));
 
 app.get("/text", async (req, res) => {
-  console.log("hey", req.query);
-  // todo call python method
+  try {
+    console.log("Handling GET Request /text route", req.query);
+    // call YAP api
+    let payload = { text: req.query.text };
+    let headers = { "Content-type": "application/json; charset=utf-8" };
 
-  const { spawn } = require("child_process");
-  const pythonProcess = spawn("python", ["../../Converter/main.py", req.query.text]);
-  let x = await setTimeout(() => {}, 1000);
-  pythonProcess.stdout.on("data", function (data) {
-    console.log(data.toString());
-    // timeout of 3 seconds
-    res.write(data);
-    res.end("end");
-  });
+    let x = JSON.stringify(payload);
+    console.log("payload xxx", JSON.parse(x));
 
-  //   const PythonShell = require("python-shell").PythonShell;
-
-  //   var options = {
-  //     mode: "text",
-  //     // pythonPath: "path/to/python",
-  //     pythonOptions: ["-u"],
-  //     scriptPath: "/Users/noamkesten/PycharmProjects/Final-Project-NLPH/Parser",
-  //     args: ["value1", "value2", "value3"],
-  //   };
-
-  //   PythonShell.run("parser.py", options, function (err, results) {
-  //     if (err) throw err;
-  //     // Results is an array consisting of messages collected during execution
-  //     console.log("results: %j", results);
-  //   });
-  //   pythonProcess.stdout.on("data", (data) => {
-  //     res.send("output\n" + data);
-  //   });
+    // python http request
+    let python_response = await axios.post("http://127.0.0.1:3002", x, headers);
+    res.send(python_response.data);
+  } catch (err) {
+    res.status(500).send("error: " + err.message);
+  }
 });
 
 app.get("", (req, res) => {

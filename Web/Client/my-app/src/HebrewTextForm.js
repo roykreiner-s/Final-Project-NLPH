@@ -17,7 +17,6 @@ function HebrewTextForm(props) {
 
   const onSubmit = async (data) => {
     props.setIsLoading(true);
-    // alert(JSON.stringify(data));
     const response = axios.get(`${URL}/text`, { params: data }).then((res) => {
       props.setOutputText(res.data);
       new Promise((resolve) => setTimeout(resolve, 1000)).then(() => props.setIsLoading(false));
@@ -39,7 +38,7 @@ function HebrewTextForm(props) {
       />
       <FormHelperText id="my-helper-text">הוסף טקסט שתרצה להמיר על פי הטיה מגדרית</FormHelperText>
 
-      <RadioGroup
+      {/* <RadioGroup
         aria-labelledby="demo-radio-buttons-group-label"
         defaultValue="classic"
         row={true}
@@ -49,7 +48,7 @@ function HebrewTextForm(props) {
         <FormControlLabel value="classic" control={<Radio />} label="קלאסי" {...register("kind")} />
         <FormControlLabel value="random-forest" control={<Radio />} label="יער אקראי" {...register("kind")} />
         <FormControlLabel value="other" control={<Radio />} label="אחר" {...register("kind")} />
-      </RadioGroup>
+      </RadioGroup> */}
 
       <Button onClick={handleSubmit(onSubmit)} variant="contained">
         שלח
