@@ -46,9 +46,11 @@ def check_if_line_contains_alphabetic_number(line):
                for word in line.split())
 
 
-def build_line_with_number_with_correct_gender(line):
+def build_line_with_number_with_correct_gender(line, gender=None):
     if not check_if_line_contains_alphabetic_number(line) and not check_if_line_contains_numeric_number(line):
         return line
+
+    print("line: ", line)
 
     converter_number_to_word = Num2Word_HE()
     converter_word_to_number = Word2Num_HE()
@@ -71,6 +73,11 @@ def build_line_with_number_with_correct_gender(line):
     # 5. get co-reference gender of number (female\male) and get number
     coref_gender, total_number = get_coref_gender_and_number_to_check(
         dep_tree_dict, md_lattice_dict)
+
+    if gender is not None:
+        coref_gender = gender
+
+    print("gender:", coref_gender)
 
     if total_number.strip() != "":
         # 6. convert word number to number
@@ -128,6 +135,11 @@ def get_dep_tree_dict(r):
     dep_tree_dict = r.json().get('dep_tree')
     dep_tree_dict = json.dumps(dep_tree_dict)
     dep_tree_dict = json.loads(dep_tree_dict)
+    if dep_tree_dict is None:
+        print("dep_tree_dict is None\n", r)
+    else:
+        for k, v in dep_tree_dict.items():
+            print(f"key: {k}, value: {v}")
     # convert dict to list of dicts
     for num in dep_tree_dict:
         dep_tree_dict[num] = json.loads(json.dumps(dep_tree_dict[num]))

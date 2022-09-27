@@ -134,7 +134,7 @@ def convert_3_digits(x, words, i, sex):
             if sex != 'M':
                 words.append(ONES_FEMALE[n3][0] + ' ' + HUNDRED[3][0])
             else:
-                words.append(ONES_MALE[n3][0] + ' ' + HUNDRED[3][0])
+                words.append(ONES_FEMALE[n3][0] + ' ' + HUNDRED[3][0])
 
     if n2 > 1:
         words.append(TWENTIES[n2][0])
