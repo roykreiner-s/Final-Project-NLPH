@@ -1,7 +1,7 @@
 # Final-Project-NLPH
 This project try to use machine learning and hebrew rules to create a hebrew NLP models that can identify sentences with wrong name of numbers and fix wrong sentences to correct name of numbers in hebrew.
 
-for demonstration please see the video attached in the root folder.
+for demonstration please see the video attached in the root folder `Video Project NLPH.mov`.
 to see the document behind it please see `NLP Hebrew Final Project - Roy - Noam.pdf`
 
 ## Final Document
