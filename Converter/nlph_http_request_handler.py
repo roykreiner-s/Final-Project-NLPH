@@ -31,7 +31,19 @@ class MyServer(BaseHTTPRequestHandler):
 
         post_body = self.rfile.read(int(self.headers.get('Content-Length')))
         post_body_json = json.loads(post_body.decode('utf-8'))
-        line = run_text(post_body_json['text'])
+        print(post_body_json["kind"])
+        line = ""
+        if (post_body_json["kind"] == "text"):
+            line = run_text(post_body_json['text'])
+        if (post_body_json["kind"] == "verify"):
+            import pickle
+            # import sklearn
+            # load the model from disk
+            filename = 'finalized_model.sav'
+            loaded_model = pickle.load(open(filename, 'rb'))
+            pr = loaded_model.predict(post_body_json['text'])
+            print(pr)
+            line = "תקין" if pr == 1 else "לא תקין"
 
         # response
         self.send_response(200)
