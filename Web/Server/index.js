@@ -10,7 +10,23 @@ app.get("/text", async (req, res) => {
   try {
     console.log("Handling GET Request /text route", req.query);
     // call YAP api
-    let payload = { text: req.query.text };
+    let payload = { text: req.query.text, kind: "text" };
+    let headers = { "Content-type": "application/json; charset=utf-8" };
+
+    let x = JSON.stringify(payload);
+    console.log("payload xxx", JSON.parse(x));
+
+    // python http request
+    let python_response = await axios.post("http://127.0.0.1:3002", x, headers);
+    res.send(python_response.data);
+  } catch (err) {
+    res.status(500).send("error: " + err.message);
+  }
+});
+
+app.get("/verify", async (req, res) => {
+  try {
+    let payload = { text: req.query.text, kind: "verify" };
     let headers = { "Content-type": "application/json; charset=utf-8" };
 
     let x = JSON.stringify(payload);

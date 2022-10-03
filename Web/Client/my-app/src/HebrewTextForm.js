@@ -25,6 +25,16 @@ function HebrewTextForm(props) {
     // props.setOutputText(response.data);
   };
 
+  const onSubmitVerify = async (data) => {
+    props.setIsLoading(true);
+    const response = axios.get(`${URL}/verify`, { params: data }).then((res) => {
+      props.setOutputText(res.data);
+      new Promise((resolve) => setTimeout(resolve, 1000)).then(() => props.setIsLoading(false));
+      // props.setIsLoading(false);
+    });
+    // props.setOutputText(response.data);
+  };
+
   return (
     <FormControl>
       <InputLabel htmlFor="my-input"></InputLabel>
@@ -51,7 +61,11 @@ function HebrewTextForm(props) {
       </RadioGroup> */}
 
       <Button onClick={handleSubmit(onSubmit)} variant="contained">
-        שלח
+        תקן את המשפט{" "}
+      </Button>
+      <div></div>
+      <Button onClick={handleSubmit(onSubmitVerify)} variant="contained" style={{ marginTop: 10, padding: 10 }}>
+        האם המשפט תקין? השתמש במודל שלנו לחזות{" "}
       </Button>
     </FormControl>
   );
